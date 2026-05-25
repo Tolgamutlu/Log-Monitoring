@@ -1,0 +1,32 @@
+<!--
+Rule ID: 100103
+Detection: Windows service creation or modification
+MITRE ATT&CK: T1543.003 - Windows Service
+
+Lab note:
+This rule looks for service creation through Windows System Event ID 7045 and
+sc.exe command-line activity. Field names may need tuning in your environment.
+-->
+
+<group name="windows,service_creation,attack,">
+  <rule id="100103" level="10">
+    <if_group>windows_system</if_group>
+    <field name="win.system.eventID">7045</field>
+    <description>Windows service creation detected</description>
+    <mitre>
+      <id>T1543.003</id>
+    </mitre>
+    <group>windows,service_creation,persistence,attack,</group>
+  </rule>
+
+  <rule id="100113" level="9">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\sc\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(create|config|binpath=)</field>
+    <description>Windows service creation or modification command detected</description>
+    <mitre>
+      <id>T1543.003</id>
+    </mitre>
+    <group>windows,service_creation,persistence,attack,</group>
+  </rule>
+</group>

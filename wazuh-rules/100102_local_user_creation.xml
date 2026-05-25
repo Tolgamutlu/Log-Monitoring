@@ -1,0 +1,32 @@
+<!--
+Rule ID: 100102
+Detection: Local user account creation
+MITRE ATT&CK: T1136.001 - Local Account
+
+Lab note:
+This rule uses Windows Security Event ID 4720 where available. A second rule
+detects command-line account creation using net.exe.
+-->
+
+<group name="windows,account_creation,attack,">
+  <rule id="100102" level="10">
+    <if_group>windows_security</if_group>
+    <field name="win.system.eventID">4720</field>
+    <description>Local user account creation detected</description>
+    <mitre>
+      <id>T1136.001</id>
+    </mitre>
+    <group>windows,account_creation,persistence,attack,</group>
+  </rule>
+
+  <rule id="100112" level="9">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\net1?\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(user\s+\S+\s+\S+\s+/add|localgroup\s+administrators)</field>
+    <description>Local user account creation command detected</description>
+    <mitre>
+      <id>T1136.001</id>
+    </mitre>
+    <group>windows,account_creation,persistence,attack,</group>
+  </rule>
+</group>

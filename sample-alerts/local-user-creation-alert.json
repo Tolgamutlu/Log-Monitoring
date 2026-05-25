@@ -1,0 +1,89 @@
+{
+  "timestamp": "2026-05-24T15:27:44.460+1000",
+  "rule": {
+    "level": 12,
+    "description": "User Account Creation Detected",
+    "id": "100102",
+    "mitre": {
+      "id": [
+        "T1136.001"
+      ],
+      "tactic": [
+        "Persistence"
+      ],
+      "technique": [
+        "Local Account"
+      ]
+    },
+    "firedtimes": 1,
+    "mail": true,
+    "groups": [
+      "windows",
+      "account_management",
+      "      attack.persistence",
+      "      attack.t1136.001",
+      "      user_account_creation",
+      "    "
+    ]
+  },
+  "agent": {
+    "id": "001",
+    "name": "LAB-WIN11-ENDPOINT",
+    "ip": "192.0.2.10"
+  },
+  "manager": {
+    "name": "WAZUH-MANAGER"
+  },
+  "id": "0000000000.00000000",
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Security-Auditing\",\"providerGuid\":\"{54849625-5478-4994-a5ba-3e3b0328c30d}\",\"eventID\":\"4720\",\"version\":\"0\",\"level\":\"0\",\"task\":\"13824\",\"opcode\":\"0\",\"keywords\":\"0x8020000000000000\",\"systemTime\":\"2026-05-24T05:27:42.9203672Z\",\"eventRecordID\":\"000000\",\"processID\":\"1234\",\"threadID\":\"1234\",\"channel\":\"Security\",\"computer\":\"LAB-WIN11\",\"severityValue\":\"AUDIT_SUCCESS\",\"message\":\"\\\"A user account was created.\\r\\n\\r\\nSubject:\\r\\n\\tSecurity ID:\\t\\tS-1-5-21-REDACTED-1001\\r\\n\\tAccount Name:\\t\\tlab-admin\\r\\n\\tAccount Domain:\\t\\tLAB-DOMAIN\\r\\n\\tLogon ID:\\t\\t0xREDACTED\\r\\n\\r\\nNew Account:\\r\\n\\tSecurity ID:\\t\\tS-1-5-21-REDACTED-1028\\r\\n\\tAccount Name:\\t\\tdemo-user\\r\\n\\tAccount Domain:\\t\\tLAB-DOMAIN\\r\\n\\r\\nAttributes:\\r\\n\\tSAM Account Name:\\tdemo-user\\r\\n\\tDisplay Name:\\t\\t<value not set>\\r\\n\\tUser Principal Name:\\t-\\r\\n\\tHome Directory:\\t\\t<value not set>\\r\\n\\tHome Drive:\\t\\t<value not set>\\r\\n\\tScript Path:\\t\\t<value not set>\\r\\n\\tProfile Path:\\t\\t<value not set>\\r\\n\\tUser Workstations:\\t<value not set>\\r\\n\\tPassword Last Set:\\t<never>\\r\\n\\tAccount Expires:\\t\\t<never>\\r\\n\\tPrimary Group ID:\\t513\\r\\n\\tAllowed To Delegate To:\\t-\\r\\n\\tOld UAC Value:\\t\\t0x0\\r\\n\\tNew UAC Value:\\t\\t0x15\\r\\n\\tUser Account Control:\\t\\r\\n\\t\\tAccount Disabled\\r\\n\\t\\t'Password Not Required' - Enabled\\r\\n\\t\\t'Normal Account' - Enabled\\r\\n\\tUser Parameters:\\t<value not set>\\r\\n\\tSID History:\\t\\t-\\r\\n\\tLogon Hours:\\t\\tAll\\r\\n\\r\\nAdditional Information:\\r\\n\\tPrivileges\\t\\t-\\\"\"},\"eventdata\":{\"targetUserName\":\"demo-user\",\"targetDomainName\":\"LAB-DOMAIN\",\"targetSid\":\"S-1-5-21-REDACTED-1028\",\"subjectUserSid\":\"S-1-5-21-REDACTED-1001\",\"subjectUserName\":\"lab-admin\",\"subjectDomainName\":\"LAB-DOMAIN\",\"subjectLogonId\":\"0xREDACTED\",\"samAccountName\":\"demo-user\",\"displayName\":\"%%1793\",\"homeDirectory\":\"%%1793\",\"homePath\":\"%%1793\",\"scriptPath\":\"%%1793\",\"profilePath\":\"%%1793\",\"userWorkstations\":\"%%1793\",\"passwordLastSet\":\"%%1794\",\"accountExpires\":\"%%1794\",\"primaryGroupId\":\"513\",\"oldUacValue\":\"0x0\",\"newUacValue\":\"0x15\",\"userAccountControl\":\"    %%2080    %%2082    %%2084\",\"userParameters\":\"%%1793\",\"logonHours\":\"%%1797\"}}}",
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "data": {
+    "win": {
+      "system": {
+        "providerName": "Microsoft-Windows-Security-Auditing",
+        "providerGuid": "{54849625-5478-4994-a5ba-3e3b0328c30d}",
+        "eventID": "4720",
+        "version": "0",
+        "level": "0",
+        "task": "13824",
+        "opcode": "0",
+        "keywords": "0x8020000000000000",
+        "systemTime": "2026-05-24T05:27:42.9203672Z",
+        "eventRecordID": "000000",
+        "processID": "1234",
+        "threadID": "1234",
+        "channel": "Security",
+        "computer": "LAB-WIN11",
+        "severityValue": "AUDIT_SUCCESS",
+        "message": "\"A user account was created.\r\n\r\nSubject:\r\n\tSecurity ID:\t\tS-1-5-21-REDACTED-1001\r\n\tAccount Name:\t\tlab-admin\r\n\tAccount Domain:\t\tLAB-DOMAIN\r\n\tLogon ID:\t\t0xREDACTED\r\n\r\nNew Account:\r\n\tSecurity ID:\t\tS-1-5-21-REDACTED-1028\r\n\tAccount Name:\t\tdemo-user\r\n\tAccount Domain:\t\tLAB-DOMAIN\r\n\r\nAttributes:\r\n\tSAM Account Name:\tdemo-user\r\n\tDisplay Name:\t\t<value not set>\r\n\tUser Principal Name:\t-\r\n\tHome Directory:\t\t<value not set>\r\n\tHome Drive:\t\t<value not set>\r\n\tScript Path:\t\t<value not set>\r\n\tProfile Path:\t\t<value not set>\r\n\tUser Workstations:\t<value not set>\r\n\tPassword Last Set:\t<never>\r\n\tAccount Expires:\t\t<never>\r\n\tPrimary Group ID:\t513\r\n\tAllowed To Delegate To:\t-\r\n\tOld UAC Value:\t\t0x0\r\n\tNew UAC Value:\t\t0x15\r\n\tUser Account Control:\t\r\n\t\tAccount Disabled\r\n\t\t'Password Not Required' - Enabled\r\n\t\t'Normal Account' - Enabled\r\n\tUser Parameters:\t<value not set>\r\n\tSID History:\t\t-\r\n\tLogon Hours:\t\tAll\r\n\r\nAdditional Information:\r\n\tPrivileges\t\t-\""
+      },
+      "eventdata": {
+        "targetUserName": "demo-user",
+        "targetDomainName": "LAB-DOMAIN",
+        "targetSid": "S-1-5-21-REDACTED-1028",
+        "subjectUserSid": "S-1-5-21-REDACTED-1001",
+        "subjectUserName": "lab-admin",
+        "subjectDomainName": "LAB-DOMAIN",
+        "subjectLogonId": "0xREDACTED",
+        "samAccountName": "demo-user",
+        "displayName": "%%1793",
+        "homeDirectory": "%%1793",
+        "homePath": "%%1793",
+        "scriptPath": "%%1793",
+        "profilePath": "%%1793",
+        "userWorkstations": "%%1793",
+        "passwordLastSet": "%%1794",
+        "accountExpires": "%%1794",
+        "primaryGroupId": "513",
+        "oldUacValue": "0x0",
+        "newUacValue": "0x15",
+        "userAccountControl": "    %%2080    %%2082    %%2084",
+        "userParameters": "%%1793",
+        "logonHours": "%%1797"
+      }
+    }
+  },
+  "location": "EventChannel"
+}

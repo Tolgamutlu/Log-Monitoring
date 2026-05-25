@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-05-21T03:04:18.229+1000",
+  "rule": {
+    "level": 7,
+    "description": "Custom - PowerShell process executed: ",
+    "id": "100100",
+    "mitre": {
+      "id": [
+        "T1059.001"
+      ],
+      "tactic": [
+        "Execution"
+      ],
+      "technique": [
+        "PowerShell"
+      ]
+    },
+    "firedtimes": 1,
+    "mail": false,
+    "groups": [
+      "windows",
+      "sysmon",
+      "custom_detection",
+      "powershell_execution",
+      "custom_detection"
+    ]
+  },
+  "agent": {
+    "id": "001",
+    "name": "LAB-WIN11-ENDPOINT",
+    "ip": "192.0.2.10"
+  },
+  "manager": {
+    "name": "WAZUH-MANAGER"
+  },
+  "id": "0000000000.00000000",
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"11\",\"version\":\"2\",\"level\":\"4\",\"task\":\"11\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-05-20T17:04:14.6114360Z\",\"eventRecordID\":\"000000\",\"processID\":\"1234\",\"threadID\":\"1234\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"LAB-WIN11\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"File created:\\r\\nRuleName: technique_id=T1059.001,technique_name=PowerShell\\r\\nUtcTime: 2026-05-20 17:04:14.610\\r\\nProcessGuid: {REDACTED-GUID}\\r\\nProcessId: 30900\\r\\nImage: C:\\\\windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\r\\nTargetFilename: C:\\\\Users\\\\lab-admin\\\\AppData\\\\Local\\\\Temp\\\\__PSScriptPolicyTest_[REDACTED].ps1\\r\\nCreationUtcTime: 2026-05-20 17:04:14.609\\r\\nUser: LAB-DOMAIN\\\\lab-admin\\\"\"},\"eventdata\":{\"ruleName\":\"technique_id=T1059.001,technique_name=PowerShell\",\"utcTime\":\"2026-05-20 17:04:14.610\",\"processGuid\":\"{REDACTED-PROCESS-GUID}\",\"processId\":\"1234\",\"image\":\"C:\\\\\\\\windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe\",\"targetFilename\":\"C:\\\\\\\\Users\\\\\\\\lab-admin\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\__PSScriptPolicyTest_[REDACTED].ps1\",\"creationUtcTime\":\"2026-05-20 17:04:14.609\",\"user\":\"LAB-DOMAIN\\\\\\\\lab-admin\"}}}",
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "data": {
+    "win": {
+      "system": {
+        "providerName": "Microsoft-Windows-Sysmon",
+        "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+        "eventID": "11",
+        "version": "2",
+        "level": "4",
+        "task": "11",
+        "opcode": "0",
+        "keywords": "0x8000000000000000",
+        "systemTime": "2026-05-20T17:04:14.6114360Z",
+        "eventRecordID": "000000",
+        "processID": "1234",
+        "threadID": "1234",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "computer": "LAB-WIN11",
+        "severityValue": "INFORMATION",
+        "message": "\"File created:\r\nRuleName: technique_id=T1059.001,technique_name=PowerShell\r\nUtcTime: 2026-05-20 17:04:14.610\r\nProcessGuid: {REDACTED-GUID}\r\nProcessId: 30900\r\nImage: C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nTargetFilename: C:\\Users\\lab-admin\\AppData\\Local\\Temp\\__PSScriptPolicyTest_[REDACTED].ps1\r\nCreationUtcTime: 2026-05-20 17:04:14.609\r\nUser: LAB-DOMAIN\\lab-admin\""
+      },
+      "eventdata": {
+        "ruleName": "technique_id=T1059.001,technique_name=PowerShell",
+        "utcTime": "2026-05-20 17:04:14.610",
+        "processGuid": "{REDACTED-PROCESS-GUID}",
+        "processId": "1234",
+        "image": "C:\\\\windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+        "targetFilename": "C:\\\\Users\\\\lab-admin\\\\AppData\\\\Local\\\\Temp\\\\__PSScriptPolicyTest_[REDACTED].ps1",
+        "creationUtcTime": "2026-05-20 17:04:14.609",
+        "user": "LAB-DOMAIN\\\\lab-admin"
+      }
+    }
+  },
+  "location": "EventChannel"
+}

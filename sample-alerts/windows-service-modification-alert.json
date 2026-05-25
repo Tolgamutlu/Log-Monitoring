@@ -1,0 +1,79 @@
+{
+  "timestamp": "2026-05-24T16:04:39.041+1000",
+  "rule": {
+    "level": 12,
+    "description": "Windows Service Modified",
+    "id": "100103",
+    "mitre": {
+      "id": [
+        "T1543.003"
+      ],
+      "tactic": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "technique": [
+        "Windows Service"
+      ]
+    },
+    "firedtimes": 2,
+    "mail": true,
+    "groups": [
+      "windows",
+      "sysmon",
+      "services",
+      "attack",
+      "      attack.persistence",
+      "      attack.privilege_escalation",
+      "      attack.t1543.003",
+      "      windows_service_modification",
+      "    "
+    ]
+  },
+  "agent": {
+    "id": "001",
+    "name": "LAB-WIN11-ENDPOINT",
+    "ip": "192.0.2.10"
+  },
+  "manager": {
+    "name": "WAZUH-MANAGER"
+  },
+  "id": "0000000000.00000000",
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"13\",\"version\":\"2\",\"level\":\"4\",\"task\":\"13\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-05-24T06:04:38.0974001Z\",\"eventRecordID\":\"000000\",\"processID\":\"1234\",\"threadID\":\"1234\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"LAB-WIN11\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"Registry value set:\\r\\nRuleName: -\\r\\nEventType: SetValue\\r\\nUtcTime: 2026-05-24 06:04:38.096\\r\\nProcessGuid: {REDACTED-GUID}\\r\\nProcessId: 1368\\r\\nImage: C:\\\\WINDOWS\\\\system32\\\\services.exe\\r\\nTargetObject: HKLM\\\\System\\\\CurrentControlSet\\\\Services\\\\Fax\\\\ImagePath\\r\\nDetails: C:\\\\windows\\\\system32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe -noexit -c \\\"write-host 'T1543.003 Test'\\\"\\r\\nUser: NT AUTHORITY\\\\SYSTEM\\\"\"},\"eventdata\":{\"eventType\":\"SetValue\",\"utcTime\":\"2026-05-24 06:04:38.096\",\"processGuid\":\"{REDACTED-PROCESS-GUID}\",\"processId\":\"1234\",\"image\":\"C:\\\\\\\\WINDOWS\\\\\\\\system32\\\\\\\\services.exe\",\"targetObject\":\"HKLM\\\\\\\\System\\\\\\\\CurrentControlSet\\\\\\\\Services\\\\\\\\Fax\\\\\\\\ImagePath\",\"details\":\"C:\\\\\\\\windows\\\\\\\\system32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe -noexit -c \\\\\\\"write-host 'T1543.003 Test'\\\\\\\"\",\"user\":\"NT AUTHORITY\\\\\\\\SYSTEM\"}}}",
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "data": {
+    "win": {
+      "system": {
+        "providerName": "Microsoft-Windows-Sysmon",
+        "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+        "eventID": "13",
+        "version": "2",
+        "level": "4",
+        "task": "13",
+        "opcode": "0",
+        "keywords": "0x8000000000000000",
+        "systemTime": "2026-05-24T06:04:38.0974001Z",
+        "eventRecordID": "000000",
+        "processID": "1234",
+        "threadID": "1234",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "computer": "LAB-WIN11",
+        "severityValue": "INFORMATION",
+        "message": "\"Registry value set:\r\nRuleName: -\r\nEventType: SetValue\r\nUtcTime: 2026-05-24 06:04:38.096\r\nProcessGuid: {REDACTED-GUID}\r\nProcessId: 1368\r\nImage: C:\\WINDOWS\\system32\\services.exe\r\nTargetObject: HKLM\\System\\CurrentControlSet\\Services\\Fax\\ImagePath\r\nDetails: C:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe -noexit -c \"write-host 'T1543.003 Test'\"\r\nUser: NT AUTHORITY\\SYSTEM\""
+      },
+      "eventdata": {
+        "eventType": "SetValue",
+        "utcTime": "2026-05-24 06:04:38.096",
+        "processGuid": "{REDACTED-PROCESS-GUID}",
+        "processId": "1234",
+        "image": "C:\\\\WINDOWS\\\\system32\\\\services.exe",
+        "targetObject": "HKLM\\\\System\\\\CurrentControlSet\\\\Services\\\\Fax\\\\ImagePath",
+        "details": "C:\\\\windows\\\\system32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe -noexit -c \\\"write-host 'T1543.003 Test'\\\"",
+        "user": "NT AUTHORITY\\\\SYSTEM"
+      }
+    }
+  },
+  "location": "EventChannel"
+}

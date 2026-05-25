@@ -1,0 +1,22 @@
+<!--
+Rule ID: 100100
+Detection: Suspicious PowerShell encoded command
+MITRE ATT&CK: T1059.001 - PowerShell
+
+Lab note:
+This rule is designed for a Wazuh + Sysmon lab. Field names may need tuning
+depending on the Wazuh decoder, Sysmon config, and Windows event source.
+-->
+
+<group name="windows,sysmon,powershell,attack,">
+  <rule id="100100" level="10">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\(powershell|pwsh)\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(-enc|-encodedcommand|frombase64string)</field>
+    <description>Suspicious PowerShell encoded command execution detected</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+    <group>windows,powershell,execution,attack,</group>
+  </rule>
+</group>

@@ -1,0 +1,21 @@
+<!--
+Rule ID: 100101
+Detection: Scheduled task persistence
+MITRE ATT&CK: T1053.005 - Scheduled Task
+
+Lab note:
+This rule looks for scheduled task creation using process command-line activity.
+-->
+
+<group name="windows,sysmon,scheduled_task,attack,">
+  <rule id="100101" level="9">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\schtasks\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(/create|/sc|/tn|/tr)</field>
+    <description>Scheduled task creation or modification detected</description>
+    <mitre>
+      <id>T1053.005</id>
+    </mitre>
+    <group>windows,scheduled_task,persistence,attack,</group>
+  </rule>
+</group>
